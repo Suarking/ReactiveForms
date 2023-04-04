@@ -1,0 +1,9 @@
+.has-error input[type="email"],
+.has-error input[type="password"] {
+  border: 2px ridge red;
+}
+
+.has-success input[type="email"],
+.has-success input[type="password"] {
+  border: 2px solid green;
+}

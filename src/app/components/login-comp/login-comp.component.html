@@ -1,0 +1,83 @@
+<div class="card mx-auto mt-5" style="width: 30rem">
+  <div class="card-header text-white bg-black">
+    <i class="bi bi-person-check"></i>
+    Login de usuario
+  </div>
+
+  <div class="card-body text-white bg-secondary">
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+      <div
+        class="form-group"
+        [ngClass]="{
+          'has-error':
+            form.get('email')?.invalid &&
+            (form.get('email')?.dirty || form.get('email')?.touched),
+          'has-success':
+            form.get('email')?.valid &&
+            (form.get('email')?.dirty || form.get('email')?.touched)
+        }"
+      >
+        <label for="email">Email:</label>
+        <input
+          type="email"
+          id="email"
+          class="form-control"
+          formControlName="email"
+        />
+        <div
+          *ngIf="
+            form.get('email')?.invalid &&
+            (form.get('email')?.dirty || form.get('email')?.touched)
+          "
+        >
+          <div *ngIf="form.get('email')?.hasError('required')">
+            Email requerido
+          </div>
+          <div *ngIf="form.get('email')?.hasError('email')">
+            Email no válido
+          </div>
+        </div>
+      </div>
+
+      <div
+        class="form-group"
+        [ngClass]="{
+          'has-error':
+            form.get('password')?.invalid &&
+            (form.get('password')?.dirty || form.get('password')?.touched),
+          'has-success':
+            form.get('password')?.valid &&
+            (form.get('password')?.dirty || form.get('password')?.touched)
+        }"
+      >
+        <label for="password">Contraseña:</label>
+        <input
+          type="password"
+          id="password"
+          class="form-control"
+          formControlName="password"
+        />
+        <div
+          *ngIf="
+            form.get('password')?.invalid &&
+            (form.get('password')?.dirty || form.get('password')?.touched)
+          "
+        >
+          <div *ngIf="form.get('password')?.hasError('required')">
+            Contraseña requerida
+          </div>
+          <div *ngIf="form.get('password')?.hasError('minlength')">
+            La contraseña debe tener al menos 6 caracteres
+          </div>
+        </div>
+      </div>
+
+      <button type="submit" style="margin-top: 10px" class="btn btn-primary">
+        Enviar
+      </button>
+      <button type="reset" style="margin-top: 10px" class="btn btn-secondary">
+        Restablecer
+      </button>
+    </form>
+  </div>
+</div>
